@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ContentPulse Sign In</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:#121212;
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+padding:20px;
+}
+
+.card{
+width:100%;
+max-width:420px;
+background:#1e1e1e;
+border:1px solid #2f2f2f;
+border-radius:16px;
+padding:35px;
+}
+
+.title{
+text-align:center;
+font-size:28px;
+font-weight:700;
+margin-bottom:15px;
+}
+
+.progress{
+height:8px;
+background:#333;
+border-radius:10px;
+overflow:hidden;
+margin-bottom:25px;
+}
+
+.progress-bar{
+width:25%;
+height:100%;
+background:#9eff00;
+}
+
+label{
+font-size:14px;
+margin-bottom:6px;
+display:block;
+}
+
+input{
+width:100%;
+padding:12px;
+background:#121212;
+border:1px solid #3a3a3a;
+border-radius:8px;
+color:white;
+margin-bottom:18px;
+outline:none;
+}
+
+input:focus{
+border-color:#9eff00;
+}
+
+.options{
+display:flex;
+align-items:center;
+justify-content:space-between;
+font-size:14px;
+margin-bottom:10px;
+}
+
+.remember{
+display:flex;
+align-items:center;
+gap:6px;
+}
+
+.note{
+font-size:12px;
+color:#9ca3af;
+margin-bottom:20px;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#9eff00;
+border:none;
+border-radius:8px;
+font-size:16px;
+font-weight:bold;
+color:#121212;
+cursor:pointer;
+transition:0.2s;
+}
+
+button:hover{
+background:#8be000;
+}
+
+.footer{
+margin-top:20px;
+text-align:center;
+font-size:14px;
+color:#9ca3af;
+}
+
+.footer a{
+color:#9eff00;
+text-decoration:none;
+font-weight:500;
+}
+
+.footer a:hover{
+text-decoration:underline;
+}
+
+.step{
+text-align:center;
+margin-top:12px;
+font-size:13px;
+color:#777;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="title">Sign in to ContentHive</div>
+
+<div class="progress">
+<div class="progress-bar"></div>
+</div>
+
+<form action= "{{url_for('sign') }}" method="POST">
+
+<label for="email">Email</label>
+<input name ="email" id="email" type="email" placeholder="Enter your email" required>
+
+<label for="password">Password</label>
+<input name="password" id="password" type="password"  placeholder="Enter your password" required>
+
+<div class="options">
+<div class="remember">
+<input id="remember" type="checkbox">
+<label for="remember">RememberMe</label>
+</div>
+</div>
+
+<div class="note">No social login on this screen.</div>
+
+<button type="submit">Sign In</button>
+
+</form>
+
+<div class="footer">
+Don't have an account? <a href="{{url_for('create')}}">Create one</a>
+</div>
+
+<div class="step">Step 1 of 4</div>
+
+</div>
+
+</body>
+</html>

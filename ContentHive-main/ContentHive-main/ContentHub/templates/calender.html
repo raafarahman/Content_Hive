@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ContentHive - Schedule </title>
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial, sans-serif;
+background:#121212;
+color:#f0f0f0;
+}
+
+/* TOPBAR */
+.topbar{
+display:flex;
+align-items:center;
+gap:20px;
+padding:12px 20px;
+background:#0d0d0d;
+border-bottom:1px solid #9eff00;
+}
+
+.nav-btn{
+text-decoration:none;
+color:white;
+padding:6px 12px;
+border-radius:6px;
+transition:0.2s;
+}
+
+.nav-btn:hover{
+background:#9eff00;
+color:black;
+text-decoration:none;
+}
+
+.search{
+background:#1a1a1a;
+border:1px solid #444;
+border-radius:20px;
+padding:6px 12px;
+color:white;
+}
+
+.logo{
+margin-left:auto;
+font-weight:bold;
+color:#9eff00;
+font-size:18px;
+}
+
+/* MAIN LAYOUT */
+.main{
+display:flex;
+}
+
+/* SIDEBAR */
+.sidebar{
+width:260px;
+background:#191919;
+border-right:1px solid #223149;
+display:flex;
+flex-direction:column;
+padding:20px;
+gap:10px;
+min-height:100vh;
+}
+
+.sidebar button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#191919;
+color:white;
+text-align:left;
+cursor:pointer;
+transition:0.2s;
+}
+
+.sidebar button:hover{
+background:#9eff00;
+color:black;
+}
+
+.sidebar .active{
+background:#9eff00;
+color:black;
+font-weight:bold;
+}
+
+.upgrade-btn{
+margin-top:auto;
+background:#9eff00;
+color:black;
+font-weight:bold;
+}
+
+/* CONTENT AREA */
+.container{
+flex:1;
+padding:40px;
+}
+
+.policy-box{
+max-width:900px;
+margin:auto;
+background:#1c1c1c;
+padding:30px;
+border-radius:12px;
+border:1px solid #2a2a2a;
+}
+
+h1{
+color:#9eff00;
+margin-bottom:20px;
+text-align:center;
+}
+
+h2{
+color:#98fb29;
+margin-top:25px;
+margin-bottom:10px;
+}
+
+p{
+line-height:1.6;
+margin-bottom:12px;
+}
+
+ul{
+margin-left:20px;
+margin-bottom:15px;
+}
+
+a{
+color:#9eff00;
+text-decoration:none;
+}
+
+a:hover{
+text-decoration:underline;
+}
+
+.user-profile{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:20px;
+    padding-bottom:15px;
+    border-bottom:1px solid #333;
+}
+
+.profile-pic{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid #9eff00;
+}
+
+.user-name{
+    font-weight:bold;
+    font-size:16px;
+}
+
+.edit-profile{
+    font-size:12px;
+    color:#9eff00;
+}
+
+/* HEADER */
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 24px;
+background:#151515;
+border-bottom:1px solid #2a2a2a;
+}
+
+.header button{
+background:#1e1e1e;
+border:1px solid #333;
+color:white;
+padding:10px 14px;
+border-radius:6px;
+cursor:pointer;
+font-size:16px;
+}
+
+.header button:hover{
+background:#9eff00;
+color:black;
+}
+
+
+/* MONTH TITLE */
+#monthName{
+font-size:24px;
+font-weight:bold;
+}
+
+/* WEEK DAYS */
+.weekdays{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+padding:0 20px;
+color:#9eff00;
+font-weight:bold;
+font-size:16px;
+}
+
+/* CALENDAR WRAPPER */
+.calendar{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:8px;
+padding:20px;
+}
+
+/* DAY BOX */
+.day{
+background:#1a1a1a;
+border:1px solid #2a2a2a;
+min-height:140px;
+border-radius:10px;
+padding:8px;
+cursor:pointer;
+position:relative;
+transition:0.2s;
+}
+
+/* hover */
+.day:hover{
+background:#222;
+}
+
+/* DATE NUMBER (LARGE) */
+.date{
+font-size:18px;
+color:#ccc;
+font-weight:bold;
+}
+
+/* EVENT TEXT (LARGER) */
+.event{
+font-size:14px;
+margin-top:5px;
+padding:3px 6px;
+border-radius:4px;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+}
+
+/* COLORS */
+.work{background:#ffcc00;color:black;}
+.study{background:#00d4ff;color:black;}
+.personal{background:#9eff00;color:black;}
+
+/* TODAY HIGHLIGHT */
+.today{
+border:2px solid #9eff00;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+
+</head>
+
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+
+<a href="#" class="nav-btn">Home</a>
+<a href="{{ url_for('pricing') }}" class="nav-btn">Pricing</a>
+<a href="{{ url_for('download') }}" class="nav-btn">Download</a>
+<a href="#" class="nav-btn">About</a>
+
+<input type="text" class="search" placeholder="Search">
+
+<span class="logo">ContentHive</span>
+
+</div>
+
+
+<div class="main">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+    <div class="user-profile">
+        <img src="{{ url_for('static', filename=user['profile_pic'] if user['profile_pic'] else 'default.png') }}" class="profile-pic">
+        <div>
+            <div class="user-name">{{ user['name'] }}</div>
+            <a href="{{ url_for('profile') }}" class="edit-profile">Edit Profile</a>
+        </div>
+    </div>
+
+
+
+
+
+
+<a href=""><button>My Library</button></a>
+<a href="{{ url_for('item') }}"><button>Smart Feed</button></a>
+<a href="#"><button class="active">Scheduling</button></a>
+<a href="{{ url_for('save') }}"><button>Upload</button></a>
+<a href="{{ url_for('setting') }}"><button>Settings</button></a>
+<a href="{{ url_for('privacy') }}"><button >Privacy</button></a>
+<a href="#"><button >Terms of Service</button></a>
+
+
+<a href="/checkout"><button class="upgrade-btn">UPGRADE TO PRO</button></a>
+<button onclick="logout()">Logout</button>
+
+</div>
+
+
+<!-- CONTENT -->
+
+
+
+<!-- CONTENT -->
+<div class="container">
+
+    <div class="policy-box">
+    
+    <h1>📅 Scheduling Calendar</h1>
+    
+    <!-- CALENDAR HEADER -->
+    <div class="header">
+        <button onclick="prevMonth()">◀</button>
+        <h2 id="monthName"></h2>
+        <button onclick="nextMonth()">▶</button>
+    </div>
+    
+    <!-- WEEK DAYS -->
+    <div class="weekdays">
+        <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div>
+        <div>Thu</div><div>Fri</div><div>Sat</div>
+    </div>
+    
+    <!-- CALENDAR GRID -->
+    <div id="calendar" class="calendar"></div>
+    
+    </div>
+    
+    </div>
+
+    
+
+
+
+
+
+
+
+<script>
+
+function logout(){
+
+// destroy login session
+localStorage.removeItem("loggedIn");
+
+// optional remove stored user
+// localStorage.removeItem("userEmail");
+
+// beautiful logout screen
+document.body.innerHTML = `
+<div style="
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#121212;
+color:white;
+font-family:Arial;
+flex-direction:column;
+">
+
+<div style="
+padding:40px;
+background:#1c1c1c;
+border-radius:16px;
+border:1px solid #2a2a2a;
+text-align:center;
+box-shadow:0 0 40px rgba(158,255,0,0.15);
+animation:pop .5s;
+">
+
+<h2 style="color:#9eff00;margin-bottom:10px;">Logging Out...</h2>
+<p style="color:#aaa;">Please wait</p>
+
+<div style="
+margin-top:20px;
+width:200px;
+height:6px;
+background:#333;
+border-radius:6px;
+overflow:hidden;
+">
+<div style="
+height:100%;
+width:0%;
+background:#9eff00;
+animation:load 1.2s linear forwards;
+"></div>
+</div>
+
+</div>
+
+<style>
+@keyframes pop{
+from{transform:scale(.8);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+
+@keyframes load{
+to{width:100%}
+}
+</style>
+
+</div>
+`;
+
+// smooth redirect (no http visible feeling)
+setTimeout(()=>{
+window.location.replace("{{ url_for('sign') }}");
+},1200);
+
+}
+    
+
+
+
+let current = new Date();
+let events = [];
+
+/* =========================
+   FETCH EVENTS FROM FLASK
+========================= */
+async function fetchEvents() {
+    try {
+        const res = await fetch("/api/calendar-events");
+        events = await res.json();
+
+        renderCalendar(); // render AFTER data arrives
+    } catch (err) {
+        console.error("Error loading events:", err);
+    }
+}
+
+/* =========================
+   RENDER CALENDAR GRID
+========================= */
+function renderCalendar() {
+
+    const calendar = document.getElementById("calendar");
+    calendar.innerHTML = "";
+
+    let year = current.getFullYear();
+    let month = current.getMonth();
+
+    let firstDay = new Date(year, month, 1).getDay();
+    let days = new Date(year, month + 1, 0).getDate();
+
+    document.getElementById("monthName").innerText =
+        current.toLocaleString('default', { month: 'long' }) + " " + year;
+
+    // empty spaces before month start
+    for (let i = 0; i < firstDay; i++) {
+        calendar.appendChild(document.createElement("div"));
+    }
+
+    // create days
+    for (let d = 1; d <= days; d++) {
+
+        let dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+
+        let div = document.createElement("div");
+        div.className = "day";
+
+        let today = new Date();
+        if (
+            today.getDate() === d &&
+            today.getMonth() === month &&
+            today.getFullYear() === year
+        ) {
+            div.classList.add("today");
+        }
+
+        div.innerHTML = `
+            <div class="date">${d}</div>
+            <div id="ev-${dateStr}"></div>
+        `;
+
+        calendar.appendChild(div);
+    }
+
+    renderEvents();
+    markCalendarDates();
+}
+
+/* =========================
+   RENDER EVENTS
+========================= */
+function renderEvents() {
+
+    events.forEach(ev => {
+
+        let box = document.getElementById("ev-" + ev.date);
+
+        if (box) {
+            let div = document.createElement("div");
+            div.className = "event " + (ev.type || "work");
+            div.innerText = ev.title;
+
+            box.appendChild(div);
+        }
+    });
+}
+
+/* =========================
+   HIGHLIGHT DAYS WITH EVENTS
+========================= */
+function markCalendarDates() {
+
+    events.forEach(ev => {
+
+        let cell = document.getElementById("ev-" + ev.date)?.parentElement;
+
+        if (cell) {
+            cell.style.border = "2px solid #9eff00";
+            cell.style.boxShadow = "0 0 8px rgba(158,255,0,0.3)";
+        }
+    });
+}
+
+/* =========================
+NAVIGATION
+========================= */
+function prevMonth() {
+    current.setMonth(current.getMonth() - 1);
+    renderCalendar();
+}
+
+function nextMonth() {
+    current.setMonth(current.getMonth() + 1);
+    renderCalendar();
+}
+
+/* =========================
+INIT LOAD
+========================= */
+fetchEvents();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+</body>
+</html>

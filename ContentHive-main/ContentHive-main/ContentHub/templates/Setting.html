@@ -1,0 +1,811 @@
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ContentHive - settings </title>
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial, sans-serif;
+background:#121212;
+color:#f0f0f0;
+}
+
+/* TOPBAR */
+.topbar{
+display:flex;
+align-items:center;
+gap:20px;
+padding:12px 20px;
+background:#0d0d0d;
+border-bottom:1px solid #9eff00;
+}
+
+.nav-btn{
+text-decoration:none;
+color:white;
+padding:6px 12px;
+border-radius:6px;
+transition:0.2s;
+}
+
+.nav-btn:hover{
+background:#9eff00;
+color:black;
+text-decoration:none;
+}
+
+.search{
+background:#1a1a1a;
+border:1px solid #444;
+border-radius:20px;
+padding:6px 12px;
+color:white;
+}
+
+.logo{
+margin-left:auto;
+font-weight:bold;
+color:#9eff00;
+font-size:18px;
+}
+
+/* MAIN LAYOUT */
+.main{
+display:flex;
+}
+
+/* SIDEBAR */
+.sidebar{
+width:260px;
+background:#191919;
+border-right:1px solid #223149;
+display:flex;
+flex-direction:column;
+padding:20px;
+gap:10px;
+min-height:100vh;
+}
+
+.sidebar button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#191919;
+color:white;
+text-align:left;
+cursor:pointer;
+transition:0.2s;
+}
+
+.sidebar button:hover{
+background:#9eff00;
+color:black;
+}
+
+.sidebar .active{
+background:#9eff00;
+color:black;
+font-weight:bold;
+}
+
+.upgrade-btn{
+margin-top:auto;
+background:#9eff00;
+color:black;
+font-weight:bold;
+}
+
+/* CONTENT AREA */
+.container{
+flex:1;
+padding:40px;
+}
+
+.policy-box{
+max-width:900px;
+margin:auto;
+background:#1c1c1c;
+padding:30px;
+border-radius:12px;
+border:1px solid #2a2a2a;
+}
+
+h1{
+color:#9eff00;
+margin-bottom:20px;
+text-align:center;
+}
+
+h2{
+color:#98fb29;
+margin-top:25px;
+margin-bottom:10px;
+}
+
+p{
+line-height:1.6;
+margin-bottom:12px;
+}
+
+ul{
+margin-left:20px;
+margin-bottom:15px;
+}
+
+a{
+color:#9eff00;
+text-decoration:none;
+}
+
+a:hover{
+text-decoration:underline;
+}
+
+
+
+
+.ultra-settings{
+min-height:100vh;
+background:linear-gradient(120deg,#0b0b0b,#121212);
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:Arial;
+color:white;
+}
+
+.settings-layout{
+width:900px;
+display:flex;
+gap:25px;
+}
+
+.settings-menu{
+width:220px;
+background:#151515;
+border:1px solid #262626;
+border-radius:16px;
+padding:20px;
+display:flex;
+flex-direction:column;
+gap:8px;
+box-shadow:0 0 30px rgba(0,0,0,0.5);
+}
+
+.menu-title{
+font-weight:bold;
+margin-bottom:10px;
+color:#9eff00;
+}
+
+.menu-item{
+padding:10px;
+background:transparent;
+border:none;
+color:white;
+text-align:left;
+border-radius:8px;
+cursor:pointer;
+transition:.25s;
+}
+
+.menu-item:hover{
+background:#9eff00;
+color:black;
+}
+
+.menu-item.active{
+background:#9eff00;
+color:black;
+font-weight:bold;
+}
+
+.menu-item.danger{
+margin-top:auto;
+color:#ff4d4d;
+}
+
+.settings-content{
+flex:1;
+position:relative;
+}
+
+.glass-card{
+background:rgba(28,28,28,0.7);
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,0.05);
+padding:35px;
+border-radius:20px;
+box-shadow:0 0 60px rgba(158,255,0,0.06);
+}
+
+.profile-head{
+display:flex;
+align-items:center;
+gap:15px;
+margin-bottom:20px;
+}
+
+.avatar{
+width:60px;
+height:60px;
+border-radius:50%;
+background:#9eff00;
+color:black;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:22px;
+font-weight:bold;
+}
+
+.name{
+font-weight:bold;
+font-size:18px;
+}
+
+.mail{
+font-size:13px;
+color:#aaa;
+}
+
+.glass-card label{
+display:block;
+margin-top:15px;
+margin-bottom:6px;
+font-size:13px;
+color:#aaa;
+}
+
+.glass-card input{
+width:100%;
+padding:13px;
+border-radius:10px;
+border:1px solid #333;
+background:#0f0f0f;
+color:white;
+transition:.25s;
+}
+
+.glass-card input:focus{
+outline:none;
+border-color:#9eff00;
+box-shadow:0 0 10px rgba(158,255,0,0.3);
+}
+
+.strength{
+height:6px;
+background:#333;
+border-radius:6px;
+margin-top:8px;
+overflow:hidden;
+}
+
+.bar{
+height:100%;
+width:60%;
+background:linear-gradient(90deg,orange,#9eff00);
+}
+
+.toggle-row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:18px;
+font-size:14px;
+}
+
+.toggle{
+width:46px;
+height:24px;
+background:#333;
+border-radius:20px;
+position:relative;
+cursor:pointer;
+transition:.3s;
+}
+
+.toggle::after{
+content:"";
+position:absolute;
+width:18px;
+height:18px;
+background:white;
+border-radius:50%;
+top:3px;
+left:4px;
+transition:.3s;
+}
+
+.toggle.active{
+background:#9eff00;
+}
+
+.toggle.active::after{
+left:24px;
+}
+
+.floating-save{
+position:absolute;
+right:0;
+bottom:-60px;
+padding:14px 28px;
+border:none;
+border-radius:30px;
+background:#9eff00;
+color:black;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 10px 25px rgba(158,255,0,0.3);
+transition:.3s;
+}
+
+.floating-save:hover{
+transform:translateY(-3px);
+}
+
+/* PERFECT CENTER FIX */
+.main{
+align-items:flex-start;
+}
+
+.ultra-settings{
+width:100%;
+min-height:calc(100vh - 60px);
+display:flex;
+justify-content:center;
+align-items:center;
+padding:40px;
+}
+
+.settings-layout{
+margin:auto;
+transform:translateY(-20px);
+animation:floatCenter .6s ease;
+}
+
+@keyframes floatCenter{
+from{
+opacity:0;
+transform:translateY(40px) scale(.96);
+}
+to{
+opacity:1;
+transform:translateY(-20px) scale(1);
+}
+}
+
+.tab-panel{
+display:none;
+animation:fade .35s ease;
+}
+
+.tab-panel.active{
+display:block;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(15px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+
+.user-profile{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:20px;
+    padding-bottom:15px;
+    border-bottom:1px solid #333;
+}
+
+.profile-pic{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid #9eff00;
+}
+
+.user-name{
+    font-weight:bold;
+    font-size:16px;
+}
+
+.edit-profile{
+    font-size:12px;
+    color:#9eff00;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+
+</head>
+
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+
+<a href="#" class="nav-btn">Home</a>
+<a href="{{ url_for('pricing') }}" class="nav-btn">Pricing</a>
+<a href="{{ url_for('download') }}" class="nav-btn">Download</a>
+<a href="#" class="nav-btn">About</a>
+
+<input type="text" class="search" placeholder="Search">
+
+<span class="logo">Content Hive</span>
+
+</div>
+
+
+<div class="main">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+    <div class="user-profile">
+        <img src="{{ url_for('static', filename=user['profile_pic'] if user['profile_pic'] else 'default.png') }}" class="profile-pic">
+        <div>
+            <div class="user-name">{{ user['name'] }}</div>
+            <a href="{{ url_for('profile') }}" class="edit-profile">Edit Profile</a>
+        </div>
+    </div>
+
+
+
+
+<a href="{{ url_for('library') }}"><button>My Library</button></a>
+<a href="{{ url_for('item') }}"><button>Smart Feed</button></a>
+<a href="{{ url_for('schedule') }}"><button>Scheduling</button></a>
+<a href="{{ url_for('save') }}"><button>Upload</button></a>
+<a href="#"><button class="active">Settings</button></a>
+<a href="{{ url_for('privacy') }}"><button >Privacy</button></a>
+<a href="{{ url_for('terms') }}"><button >Terms of Service</button></a>
+
+
+<a href="/checkout"><button class="upgrade-btn">UPGRADE TO PRO</button></a>
+<button onclick="logout()">Logout</button>
+
+</div>
+
+
+<!-- CONTENT -->
+
+
+<!-- SETTINGS WRAPPER -->
+<div class="ultra-settings">
+
+<div class="settings-layout">
+
+<!-- LEFT TAB MENU -->
+<div class="settings-menu">
+
+<div class="menu-title">Settings</div>
+
+<button class="menu-item active" data-tab="profile">Profile</button>
+<button class="menu-item" data-tab="security">Security</button>
+<button class="menu-item" data-tab="billing">Billing</button>
+<button class="menu-item" data-tab="notifications">Notifications</button>
+
+<!--<button class="menu-item danger">Delete Account</button>-->
+<button class="menu-item danger" data-tab="delete">Delete Account</button>
+
+</div>
+
+<!-- SETTINGS CONTENT -->
+<div class="settings-content">
+
+    <form method="post" action="{{ url_for('setting') }}">
+    
+    <!-- PROFILE -->
+    <div class="tab-panel active" id="profile">
+    <div class="glass-card">
+    
+    <div class="profile-head">
+    <div class="avatar">{{ user['name'][0] if user['name'] else 'U' }}</div>
+    <div>
+    <div class="mail">Profile Settings</div>
+    </div>
+    </div>
+    
+    <label>Email Address</label>
+    <input name="email" type="email" value="{{ user['email'] }}">
+    
+    <label>Current Password</label>
+    <input name="password" type="password">
+    
+    <label>New Password</label>
+    <input name="new_password" type="password">
+    
+    <div class="strength"><div class="bar"></div></div>
+    
+    <label>Confirm Password</label>
+    <input name="confirm_password" type="password">
+    
+    </div>
+    </div>
+    
+    <!-- SECURITY -->
+    <div class="tab-panel" id="security">
+    <div class="glass-card">
+    
+    <h2>Two-Step Verification</h2>
+    
+    <div class="toggle-row">
+    <span>Enable 2FA</span>
+    <div class="toggle"></div>
+    </div>
+    
+    <label>Phone Number</label>
+
+    <input name="phone" value="{{ user_info['phone'] if user_info else '' }}">
+    
+    <div class="toggle-row" style="margin-top: 30px;">
+        <div>
+            <div style="font-weight: bold; color: #9eff00;">Two-Factor Authentication</div>
+            <div style="font-size: 12px; color: #777;">Secure your account with a 6-digit code</div>
+        </div>
+        <div class="toggle {% if user['two_factor_enabled'] %}active{% endif %}" id="twoFactorToggle"></div>
+    </div>
+    
+    <script>
+    document.getElementById('twoFactorToggle').onclick = function() {
+        const isActive = this.classList.contains('active');
+        const newState = !isActive;
+        
+        fetch('/toggle_2fa', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'enabled=' + newState
+        }).then(res => res.json()).then(data => {
+            if(data.success) {
+                this.classList.toggle('active');
+            }
+        });
+    };
+    </script>
+    
+    </div>
+    </div>
+    
+    <!-- BILLING -->
+    <div class="tab-panel" id="billing">
+    <div class="glass-card">
+    
+    <h2>Billing</h2>
+    
+    <label>Card Number</label>
+    <input name="card" value="{{ user_info['card_number'] if user_info else '' }}">
+    
+    <label>Expiry</label>
+    <input name="expiry" value="{{ user_info['expiry'] if user_info else '' }}">
+    
+    </div>
+    </div>
+    
+    <!-- NOTIFICATIONS -->
+    <div class="tab-panel" id="notifications">
+    <div class="glass-card">
+    
+    <h2>Notification Settings</h2>
+    
+    <div class="toggle-row">
+    <span>Email Notifications</span>
+    <div class="toggle"></div>
+    </div>
+    
+    <div class="toggle-row">
+    <span>Push Alerts</span>
+    <div class="toggle active"></div>
+    </div>
+    
+    </div>
+    </div>
+    
+    <!-- 🔴 DELETE ACCOUNT (FIXED) -->
+    <div class="tab-panel" id="delete">
+    <div class="glass-card">
+    
+    <h2 style="color:#ff4d4d;">Delete Account</h2>
+    
+    <p style="color:#aaa;">
+    This action is permanent. Your account will be deleted forever.
+    </p>
+    
+    <label>Confirm Password</label>
+    <input type="password" name="delete_password">
+    
+    <button type="submit" name="delete_account"
+    onclick="return confirm('Are you sure? This cannot be undone!')"
+    style="
+    margin-top:20px;
+    width:100%;
+    padding:12px;
+    background:#ff4d4d;
+    border:none;
+    border-radius:10px;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    ">
+    Delete My Account
+    </button>
+    
+    </div>
+    </div>
+    
+    <!-- SAVE BUTTON -->
+    <button type="submit" id="saveBtn" class="floating-save">Save Changes</button>
+    
+    </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+function logout(){
+
+// destroy login session
+localStorage.removeItem("loggedIn");
+
+// optional remove stored user
+// localStorage.removeItem("userEmail");
+
+// beautiful logout screen
+document.body.innerHTML = `
+<div style="
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#121212;
+color:white;
+font-family:Arial;
+flex-direction:column;
+">
+
+<div style="
+padding:40px;
+background:#1c1c1c;
+border-radius:16px;
+border:1px solid #2a2a2a;
+text-align:center;
+box-shadow:0 0 40px rgba(158,255,0,0.15);
+animation:pop .5s;
+">
+
+<h2 style="color:#9eff00;margin-bottom:10px;">Logging Out...</h2>
+<p style="color:#aaa;">Please wait</p>
+
+<div style="
+margin-top:20px;
+width:200px;
+height:6px;
+background:#333;
+border-radius:6px;
+overflow:hidden;
+">
+<div style="
+height:100%;
+width:0%;
+background:#9eff00;
+animation:load 1.2s linear forwards;
+"></div>
+</div>
+
+</div>
+
+<style>
+@keyframes pop{
+from{transform:scale(.8);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+
+@keyframes load{
+to{width:100%}
+}
+</style>
+
+</div>
+`;
+
+// smooth redirect (no http visible feeling)
+setTimeout(()=>{
+window.location.replace("{{ url_for('sign') }}");
+},1200);
+
+}
+
+/* TAB SYSTEM */
+document.querySelectorAll(".menu-item[data-tab]").forEach(btn=>{
+btn.onclick=()=>{
+
+document.querySelectorAll(".menu-item").forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+
+document.querySelectorAll(".tab-panel").forEach(p=>p.classList.remove("active"));
+document.getElementById(btn.dataset.tab).classList.add("active");
+
+};
+});
+
+/* TOGGLE SWITCH */
+document.querySelectorAll(".toggle").forEach(t=>{
+t.onclick=()=>{
+t.classList.toggle("active");
+};
+});
+
+document.querySelectorAll(".menu-item[data-tab]").forEach(btn=>{
+btn.onclick=()=>{
+
+document.querySelectorAll(".menu-item").forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+
+document.querySelectorAll(".tab-panel").forEach(p=>p.classList.remove("active"));
+document.getElementById(btn.dataset.tab).classList.add("active");
+
+/* 🔥 hide save button in delete tab */
+if(btn.dataset.tab === "delete"){
+    document.getElementById("saveBtn").style.display = "none";
+}else{
+    document.getElementById("saveBtn").style.display = "block";
+}
+
+};
+});
+
+
+
+
+
+
+
+
+
+    
+    </script>
+
+
+
+
+
+
+
+</body>
+</html>

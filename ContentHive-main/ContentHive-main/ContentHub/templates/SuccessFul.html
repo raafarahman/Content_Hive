@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Success</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+background: radial-gradient(circle at top,#1b1b1b,#000);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+color:white;
+}
+
+/* GLASS CARD */
+.card{
+width:420px;
+padding:40px;
+border-radius:20px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,0.1);
+text-align:center;
+z-index:2;
+box-shadow:0 0 40px rgba(158,255,0,0.2);
+animation:pop .6s ease;
+}
+
+@keyframes pop{
+0%{transform:scale(.6);opacity:0;}
+100%{transform:scale(1);opacity:1;}
+}
+
+/* SUCCESS TICK */
+.tick{
+font-size:70px;
+color:#9eff00;
+animation:bounce 1s infinite alternate;
+}
+
+@keyframes bounce{
+from{transform:translateY(0);}
+to{transform:translateY(-10px);}
+}
+
+.title{
+font-size:30px;
+font-weight:bold;
+margin-top:10px;
+}
+
+.msg{
+color:#aaa;
+margin-top:10px;
+}
+
+.count{
+margin-top:10px;
+color:#9eff00;
+font-size:18px;
+}
+
+/* FANUS */
+.fanus{
+position:absolute;
+bottom:-120px;
+width:40px;
+height:60px;
+background:linear-gradient(#ffb347,#ff5e62);
+border-radius:50% 50% 40% 40%;
+animation:fly 10s linear infinite;
+box-shadow:0 0 20px orange;
+}
+
+@keyframes fly{
+0%{transform:translateY(0);opacity:0;}
+10%{opacity:1;}
+100%{transform:translateY(-130vh) translateX(60px);opacity:0;}
+}
+
+/* CONFETTI */
+.confetti{
+position:absolute;
+width:8px;
+height:14px;
+background:red;
+top:-20px;
+animation:fall 4s linear infinite;
+}
+
+@keyframes fall{
+to{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* FIREWORK */
+.firework{
+position:absolute;
+width:6px;
+height:6px;
+background:#9eff00;
+border-radius:50%;
+animation:explode 1.5s ease-out infinite;
+}
+
+@keyframes explode{
+0%{transform:scale(1);opacity:1;}
+100%{transform:scale(15);opacity:0;}
+}
+
+button{
+margin-top:20px;
+width:100%;
+padding:12px;
+background:#9eff00;
+border:none;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+}
+
+</style>
+</head>
+<body>
+
+<!-- FANUS -->
+<div class="fanus" style="left:10%;animation-delay:0s"></div>
+<div class="fanus" style="left:30%;animation-delay:3s"></div>
+<div class="fanus" style="left:60%;animation-delay:1s"></div>
+<div class="fanus" style="left:80%;animation-delay:4s"></div>
+
+<!-- CONFETTI MANY -->
+<script>
+for(let i=0;i<40;i++){
+let c=document.createElement("div");
+c.className="confetti";
+c.style.left=Math.random()*100+"%";
+c.style.background=["#ff4d4d","#ffd93d","#6bffb8","#4db8ff"][Math.floor(Math.random()*4)];
+c.style.animationDuration=(3+Math.random()*3)+"s";
+document.body.appendChild(c);
+}
+</script>
+
+<!-- FIREWORKS -->
+<div class="firework" style="top:20%;left:20%"></div>
+<div class="firework" style="top:30%;left:70%"></div>
+<div class="firework" style="top:60%;left:40%"></div>
+
+<!-- CARD -->
+<div class="card">
+
+<div class="tick">✔</div>
+<div class="title">Account Created!</div>
+<div class="msg">Welcome to ContentPulse {{ user_name }} 🎉</div>
+<div class="count">Redirecting in <span id="sec">5</span> sec</div>
+
+<button onclick="go()">Go Now</button>
+
+</div>
+
+<script>
+let s=5;
+let el=document.getElementById("sec");
+
+let t=setInterval(()=>{
+s--;
+el.innerText=s;
+if(s==0){
+clearInterval(t);
+go();
+}
+},1000);
+
+
+function go(){
+    window.location.href="{{ url_for('interest') }}";  // redirect to Interest page
+}
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

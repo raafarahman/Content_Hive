@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logging Out</title>
+<style>
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* BODY */
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #121212;
+  color: white;
+}
+
+/* CONTAINER */
+.logout-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CARD */
+.logout-card {
+  padding: 40px;
+  background: #1c1c1c;
+  border-radius: 16px;
+  border: 1px solid #2a2a2a;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(158, 255, 0, 0.15);
+  animation: pop 0.5s ease;
+}
+
+.logout-card h2 {
+  color: #9eff00;
+  margin-bottom: 10px;
+}
+
+.logout-card p {
+  color: #aaa;
+}
+
+/* PROGRESS BAR */
+.progress-bar {
+  margin-top: 20px;
+  width: 200px;
+  height: 6px;
+  background: #333;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  background: #9eff00;
+  animation: load 1.2s linear forwards;
+}
+
+/* ANIMATIONS */
+@keyframes pop {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes load {
+  to {
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+
+</style>
+
+<!-- Auto redirect (no JS) -->
+<meta http-equiv="refresh" content="1.5;url={{ url_for('index') }}">
+</head>
+
+<body>
+
+<div class="logout-container">
+    
+    <div class="logout-card">
+        <h2>Logging Out...</h2>
+        <p>Please wait</p>
+
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

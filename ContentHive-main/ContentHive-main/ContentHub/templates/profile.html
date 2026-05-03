@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Edit Profile</title>
+<style>
+body{
+    background:#121212;
+    color:white;
+    font-family:Arial;
+}
+
+.container{
+    width:400px;
+    margin:80px auto;
+    background:#1c1c1c;
+    padding:30px;
+    border-radius:12px;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    background:#191919;
+    border:1px solid #333;
+    color:white;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#9eff00;
+    border:none;
+    font-weight:bold;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Edit Profile</h2>
+
+<form method="POST" enctype="multipart/form-data">
+
+<input type="text" name="name" value="{{ user['name'] }}" placeholder="Name">
+
+<input type="file" name="profile_pic">
+
+<button type="submit">Save Changes</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

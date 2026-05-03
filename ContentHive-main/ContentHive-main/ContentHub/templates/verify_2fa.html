@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verify 2FA - ContentHive</title>
+<style>
+    :root {
+        --honey: #9eff00;
+        --bg: #121212;
+        --surface: #1c1c1c;
+        --text: #f0f0f0;
+        --error: #ff4d4d;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+    }
+
+    body {
+        background: var(--bg);
+        color: var(--text);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .container {
+        background: var(--surface);
+        padding: 40px;
+        border-radius: 24px;
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: var(--honey);
+    }
+
+    p {
+        color: #aaa;
+        font-size: 14px;
+        margin-bottom: 30px;
+    }
+
+    .code-inputs {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+
+    .code-inputs input {
+        width: 50px;
+        height: 60px;
+        background: #0d0d0d;
+        border: 1px solid #333;
+        border-radius: 12px;
+        text-align: center;
+        font-size: 24px;
+        color: white;
+        font-weight: bold;
+        outline: none;
+        transition: 0.3s;
+    }
+
+    .code-inputs input:focus {
+        border-color: var(--honey);
+        box-shadow: 0 0 10px rgba(158, 255, 0, 0.2);
+    }
+
+    .verify-btn {
+        width: 100%;
+        padding: 16px;
+        background: var(--honey);
+        color: black;
+        border: none;
+        border-radius: 12px;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .verify-btn:hover {
+        background: #b1ff33;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(158, 255, 0, 0.2);
+    }
+
+    .error-msg {
+        color: var(--error);
+        font-size: 14px;
+        margin-top: 15px;
+        animation: shake 0.4s ease;
+    }
+
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        75% { transform: translateX(5px); }
+    }
+
+    .resend {
+        margin-top: 25px;
+        font-size: 13px;
+        color: #777;
+    }
+
+    .resend a {
+        color: var(--honey);
+        text-decoration: none;
+    }
+
+</style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Verify Account</h1>
+        <p>Please enter the 6-digit code sent to your device.</p>
+
+        <form action="/verify_2fa" method="POST" id="2fa-form">
+            <div class="code-inputs">
+                <input type="text" name="c1" maxlength="1" required oninput="moveNext(this, 'c2')" id="c1">
+                <input type="text" name="c2" maxlength="1" required oninput="moveNext(this, 'c3')" id="c2">
+                <input type="text" name="c3" maxlength="1" required oninput="moveNext(this, 'c4')" id="c3">
+                <input type="text" name="c4" maxlength="1" required oninput="moveNext(this, 'c5')" id="c4">
+                <input type="text" name="c5" maxlength="1" required oninput="moveNext(this, 'c6')" id="c5">
+                <input type="text" name="c6" maxlength="1" required oninput="handleSubmit()" id="c6">
+            </div>
+
+            {% if error %}
+                <div class="error-msg">{{ error }}</div>
+            {% endif %}
+
+            <button type="submit" class="verify-btn">Verify Now</button>
+        </form>
+
+        <div class="resend">
+            Didn't receive code? <a href="#">Resend Code</a>
+        </div>
+    </div>
+
+    <script>
+        function moveNext(current, nextId) {
+            if (current.value.length >= 1) {
+                document.getElementById(nextId).focus();
+            }
+        }
+
+        function handleSubmit() {
+            // Optional: auto-submit when last digit is entered
+        }
+
+        // Handle backspace to move focus to previous input
+        document.querySelectorAll('.code-inputs input').forEach((input, index) => {
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && input.value === '' && index > 0) {
+                    document.querySelectorAll('.code-inputs input')[index - 1].focus();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Roboto, Arial, sans-serif;
+}
+
+body{
+background:#121212;
+color:white;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:0 20px;
+}
+
+/* Header */
+
+.header{
+height:80px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+border-bottom:1px solid #333;
+}
+
+.logo{
+font-size:24px;
+font-weight:bold;
+}
+
+.nav{
+display:flex;
+gap:25px;
+color:#ccc;
+}
+
+.nav a{
+text-decoration:none;
+color:#ccc;
+font-size:14px;
+}
+
+.nav a:hover{
+color:white;
+}
+
+.auth{
+display:flex;
+gap:15px;
+align-items:center;
+}
+
+.btn{
+padding:10px 20px;
+border-radius:6px;
+border:1px solid #333;
+color:white;
+text-decoration:none;
+}
+
+.btn-primary{
+background:#9eff00;
+color:black;
+border:none;
+}
+
+/* Banner */
+
+.banner{
+text-align:center;
+padding:80px 20px;
+background: radial-gradient(circle at bottom, rgba(158,255,0,0.1), transparent);
+border-bottom:1px solid #333;
+}
+
+.banner small{
+color:#9eff00;
+letter-spacing:2px;
+}
+
+.banner h1{
+font-size:48px;
+margin:20px 0;
+}
+
+.banner p{
+color:#aaa;
+max-width:600px;
+margin:auto;
+}
+
+.banner-buttons{
+margin-top:30px;
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+/* Pricing Cards */
+
+.pricing-cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+padding:80px 20px;
+}
+
+.card{
+background:#191919;
+border:1px solid #333;
+border-radius:12px;
+padding:30px;
+}
+
+.card h3{
+font-size:20px;
+margin-bottom:10px;
+}
+
+.price{
+font-size:36px;
+margin:10px 0;
+}
+
+.card ul{
+margin:20px 0;
+list-style:none;
+}
+
+.card ul li{
+margin:10px 0;
+color:#ccc;
+}
+
+.card button{
+width:100%;
+padding:12px;
+border-radius:8px;
+border:1px solid #333;
+background:none;
+color:white;
+cursor:pointer;
+}
+
+.card button.primary{
+background:#9eff00;
+color:black;
+border:none;
+}
+
+/* Table */
+
+.features{
+padding:60px 20px;
+}
+
+.features table{
+width:100%;
+border-collapse:collapse;
+}
+
+.features th,
+.features td{
+border-bottom:1px solid #333;
+padding:15px;
+text-align:left;
+}
+
+.features th{
+color:#999;
+}
+
+/* Footer */
+
+.footer{
+margin-top:80px;
+padding:60px 20px;
+background:#191919;
+border-top:1px solid #333;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:30px;
+}
+
+.footer h4{
+margin-bottom:15px;
+}
+
+.footer ul{
+list-style:none;
+}
+
+.footer ul li{
+margin:8px 0;
+color:#aaa;
+}
+
+.footer-bottom{
+margin-top:40px;
+text-align:center;
+color:#777;
+font-size:14px;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.banner h1{
+font-size:32px;
+}
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+<header class="header">
+
+<div class="logo">ContentHive</div>
+
+<nav class="nav">
+<a href="{{ url_for('index') }}">Home</a>
+<a href="#">Pricing</a>
+<a href="#">Blog</a>
+</nav>
+
+<div class="auth">
+<a href="{{url_for('sign') }}" class="btn">Sign in</a>
+<a href="{{ url_for('signin') }}" class="btn btn-primary">Get Started</a>
+</div>
+
+</header>
+
+</div>
+
+
+<section class="banner">
+
+<small>PRICING</small>
+
+<h1>Your reading, organized.<br>Your attention amplified.</h1>
+
+<p>
+Capture links anywhere. ContentHive cleans it up, summarizes with AI,
+and schedules the best time to read. Start free — upgrade anytime.
+</p>
+
+<div class="banner-buttons">
+
+<a href="#" class="btn btn-primary">Try Pro</a>
+<a href="{{url_for('signin') }}" class="btn">Get Started Free</a>
+
+</div>
+
+</section>
+
+
+<section class="pricing-cards container">
+
+<div class="card">
+
+<h3>Free</h3>
+
+<div class="price">$0</div>
+
+<ul>
+<li>Save articles</li>
+<li>Basic summaries</li>
+<li>Mobile access</li>
+<li>Tag collections</li>
+<li>Weekly digest</li>
+</ul>
+
+<button href="{{ url_for('signin') }}">Get Started</button>
+
+</div>
+
+
+<div class="card">
+
+<h3>Pro</h3>
+
+<div class="price">$9 / mo</div>
+
+<ul>
+<li>Unlimited saves</li>
+<li>AI summaries</li>
+<li>Auto tagging</li>
+<li>CSV / JSON export</li>
+<li>Priority support</li>
+</ul>
+
+
+
+</div>
+
+</section>
+
+
+<section class="features container">
+
+<h2 style="margin-bottom:30px;">Feature Comparison</h2>
+
+<table>
+
+<tr>
+<th>Feature</th>
+<th>Free</th>
+<th>Pro</th>
+</tr>
+
+<tr>
+<td>Saved Articles</td>
+<td>50</td>
+<td>Unlimited</td>
+</tr>
+
+<tr>
+<td>AI Summaries</td>
+<td>Basic</td>
+<td>Advanced</td>
+</tr>
+
+<tr>
+<td>Export</td>
+<td>No</td>
+<td>CSV / JSON</td>
+</tr>
+
+<tr>
+<td>Support</td>
+<td>Community</td>
+<td>Priority Email</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<footer class="footer">
+
+<div class="container">
+
+<div class="footer-grid">
+
+<div>
+<h4>Product</h4>
+<ul>
+<li>Features</li>
+<li>Pricing</li>
+<li>Updates</li>
+</ul>
+</div>
+
+<div>
+<h4>Company</h4>
+<ul>
+<li>About</li>
+<li>Blog</li>
+<li>Careers</li>
+</ul>
+</div>
+
+<div>
+<h4>Legal</h4>
+<ul>
+<li>Privacy Policy</li>
+<li>Terms</li>
+</ul>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 ContentHive. All rights reserved.
+</div>
+
+</div>
+
+</footer>
+
+</body>
+</html>

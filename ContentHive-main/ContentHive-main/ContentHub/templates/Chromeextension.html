@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Save Content to ContentPulse</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .modal {
+    width: 550px;
+    background-color: #1c1c1c;
+    border: 1px solid #2a2a2a;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .modal h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    border-bottom: 1px solid #2a2a2a;
+    padding-bottom: 8px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .field label {
+    font-size: 18px;
+  }
+
+  .field input,
+  .field textarea {
+    background-color: #121212;
+    color: #fff;
+    padding: 12px;
+    border: 1.4px solid #fff;
+    border-radius: 8px;
+    font-size: 17px;
+    outline: none;
+  }
+
+  .field textarea {
+    resize: none;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+  }
+
+  .btn-cancel {
+    background-color: #2a2a2a;
+    color: #f0f0f0;
+  }
+
+  .btn-cancel:hover {
+    background-color: #3a3a3a;
+  }
+
+  .btn-save {
+    background-color: #98fb29;
+    color: #0d0d0d;
+  }
+
+  .btn-save:hover {
+    background-color: #a7ff44;
+  }
+</style>
+</head>
+<body>
+
+<div class="modal">
+  <h2>Save Item</h2>
+
+  <!-- URL Field -->
+  <div class="field">
+    <label for="url">URL</label>
+    <input type="text" id="url" placeholder="Paste the URL here">
+  </div>
+
+  <!-- Title Field -->
+  <div class="field">
+    <label for="title">Title (Optional)</label>
+    <input type="text" id="title" placeholder="Enter the title here ...">
+  </div>
+
+  <!-- Notes Field -->
+  <div class="field">
+    <label for="notes">Notes (Optional)</label>
+    <textarea id="notes" rows="4" placeholder="Leave Some Notes ..."></textarea>
+  </div>
+
+  <!-- Buttons -->
+  <div class="buttons">
+    <button class="btn btn-cancel">Cancel</button>
+    <button class="btn btn-save">Save</button>
+  </div>
+</div>
+
+</body>
+</html>

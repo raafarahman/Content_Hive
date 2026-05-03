@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ContentHive - Upload </title>
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial, sans-serif;
+background:#121212;
+color:#f0f0f0;
+}
+
+/* TOPBAR */
+.topbar{
+display:flex;
+align-items:center;
+gap:20px;
+padding:12px 20px;
+background:#0d0d0d;
+border-bottom:1px solid #9eff00;
+}
+
+.nav-btn{
+text-decoration:none;
+color:white;
+padding:6px 12px;
+border-radius:6px;
+transition:0.2s;
+}
+
+.nav-btn:hover{
+background:#9eff00;
+color:black;
+text-decoration:none;
+}
+
+.search{
+background:#1a1a1a;
+border:1px solid #444;
+border-radius:20px;
+padding:6px 12px;
+color:white;
+}
+
+.logo{
+margin-left:auto;
+font-weight:bold;
+color:#9eff00;
+font-size:18px;
+}
+
+/* MAIN LAYOUT */
+.main{
+display:flex;
+}
+
+/* SIDEBAR */
+.sidebar{
+width:260px;
+background:#191919;
+border-right:1px solid #223149;
+display:flex;
+flex-direction:column;
+padding:20px;
+gap:10px;
+min-height:100vh;
+}
+
+.sidebar button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#191919;
+color:white;
+text-align:left;
+cursor:pointer;
+transition:0.2s;
+}
+
+.sidebar button:hover{
+background:#9eff00;
+color:black;
+}
+
+.sidebar .active{
+background:#9eff00;
+color:black;
+font-weight:bold;
+}
+
+.upgrade-btn{
+margin-top:auto;
+background:#9eff00;
+color:black;
+font-weight:bold;
+}
+
+/* CONTENT AREA */
+.container{
+flex:1;
+padding:40px;
+}
+
+.policy-box{
+max-width:900px;
+margin:auto;
+background:#1c1c1c;
+padding:30px;
+border-radius:12px;
+border:1px solid #2a2a2a;
+}
+
+h1{
+color:#9eff00;
+margin-bottom:20px;
+text-align:center;
+}
+
+h2{
+color:#98fb29;
+margin-top:25px;
+margin-bottom:10px;
+}
+
+p{
+line-height:1.6;
+margin-bottom:12px;
+}
+
+ul{
+margin-left:20px;
+margin-bottom:15px;
+}
+
+a{
+color:#9eff00;
+text-decoration:none;
+}
+
+a:hover{
+text-decoration:underline;
+}
+
+
+
+
+
+
+
+
+/* CONTAINER */
+.container{
+padding:40px;
+}
+
+/* MAIN BOX */
+.boss-box{
+max-width:900px;
+margin:auto;
+background:rgba(20,20,20,0.85);
+backdrop-filter:blur(15px);
+padding:30px;
+border-radius:20px;
+border:1px solid rgba(158,255,0,0.15);
+box-shadow:0 0 60px rgba(0,0,0,0.8);
+}
+
+/* TITLE */
+h1{
+text-align:center;
+color:#9eff00;
+margin-bottom:10px;
+}
+
+.subtitle{
+text-align:center;
+color:#aaa;
+margin-bottom:25px;
+}
+
+/* TABS */
+.tabs{
+display:flex;
+justify-content:center;
+gap:10px;
+margin-bottom:25px;
+flex-wrap:wrap;
+}
+
+.tab{
+padding:10px 18px;
+border:none;
+border-radius:20px;
+background:#1e293b;
+color:#aaa;
+cursor:pointer;
+transition:0.3s;
+font-weight:bold;
+}
+
+.tab:hover{
+background:#334155;
+}
+
+.tab.active{
+background:#9eff00;
+color:black;
+box-shadow:0 0 10px rgba(158,255,0,0.5);
+}
+
+/* INPUTS */
+input, select, textarea{
+width:100%;
+padding:12px;
+margin-bottom:12px;
+border:none;
+border-radius:10px;
+background:#1e293b;
+color:white;
+outline:none;
+font-size:14px;
+transition:0.2s;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+box-shadow:0 0 8px rgba(158,255,0,0.3);
+}
+
+/* TEXTAREA */
+textarea{
+height:100px;
+resize:none;
+}
+
+/* TAB CONTENT */
+.tab-content{
+display:none;
+margin-top:10px;
+}
+
+.tab-content.active{
+display:block;
+}
+
+/* UPLOAD ZONE */
+.upload-zone{
+display:block;
+padding:30px;
+border:2px dashed #444;
+border-radius:14px;
+text-align:center;
+cursor:pointer;
+transition:0.3s;
+background:#111;
+}
+
+.upload-zone:hover{
+border-color:#9eff00;
+background:rgba(158,255,0,0.05);
+}
+
+.upload-zone input{
+display:none;
+}
+
+/* PREVIEW */
+.preview{
+margin-top:10px;
+padding:12px;
+border-radius:10px;
+background:#0f172a;
+color:#bbb;
+font-size:13px;
+border:1px solid #333;
+}
+
+/* SCHEDULE */
+.schedule-box{
+margin-top:15px;
+padding:15px;
+background:#111;
+border-radius:12px;
+border:1px solid #333;
+}
+
+.schedule-box label{
+display:block;
+margin-bottom:8px;
+color:#9eff00;
+font-size:14px;
+}
+
+.schedule-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+/* BUTTON */
+button[type="submit"]{
+width:100%;
+padding:14px;
+margin-top:15px;
+border:none;
+border-radius:10px;
+background:#9eff00;
+color:black;
+font-weight:bold;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button[type="submit"]:hover{
+background:#baff2a;
+box-shadow:0 0 15px rgba(158,255,0,0.4);
+}
+
+/* LIBRARY */
+.library{
+margin-top:50px;
+max-width:1000px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.library h2{
+margin-bottom:20px;
+color:#9eff00;
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+}
+
+/* CARD */
+.card{
+background:#111;
+padding:20px;
+border-radius:16px;
+border:1px solid #333;
+transition:0.3s;
+cursor:pointer;
+text-align:center;
+}
+
+.card span{
+font-size:30px;
+display:block;
+margin-bottom:10px;
+}
+
+.card h4{
+margin-bottom:5px;
+}
+
+.card p{
+font-size:13px;
+color:#aaa;
+}
+
+.card:hover{
+transform:translateY(-6px) scale(1.02);
+border-color:#9eff00;
+box-shadow:0 0 25px rgba(158,255,0,0.2);
+}
+
+/* SCROLL SMOOTH */
+html{
+scroll-behavior:smooth;
+}
+
+
+
+.card-tabs {
+    margin-top: 12px;
+    background: #1e1e1e;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* TAB BUTTONS */
+.tab-buttons {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 6px;
+    border: none;
+    cursor: pointer;
+    background: #333;
+    color: white;
+    border-radius: 6px;
+    font-size: 12px;
+    transition: 0.2s;
+}
+
+.tab-btn:hover {
+    background: #444;
+}
+
+.tab-btn.active {
+    background: #4caf50;
+}
+
+/* TAB CONTENT */
+.tab-content {
+    display: none;
+    padding: 8px;
+    background: #2a2a2a;
+    border-radius: 6px;
+    color: white;
+    font-size: 13px;
+}
+
+/* ACTIVE CONTENT */
+.active-tab {
+    display: block;
+}
+
+/* LINKS */
+.tab-content a {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.user-profile{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:20px;
+    padding-bottom:15px;
+    border-bottom:1px solid #333;
+}
+
+.profile-pic{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid #9eff00;
+}
+
+.user-name{
+    font-weight:bold;
+    font-size:16px;
+}
+
+.edit-profile{
+    font-size:12px;
+    color:#9eff00;
+}
+
+.tab-content a {
+    display: inline-block;
+    margin-top: 5px;
+    color: #9eff00;
+    text-decoration: none;
+}
+
+.tab-content video {
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+
+</head>
+
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+
+<a href="#" class="nav-btn">Home</a>
+<a href="{{ url_for('pricing') }}" class="nav-btn">Pricing</a>
+<a href="{{ url_for('download') }}" class="nav-btn">Download</a>
+<a href="#" class="nav-btn">About</a>
+
+<input type="text" class="search" placeholder="Search">
+
+<span class="logo">ContentHive</span>
+
+</div>
+
+
+<div class="main">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+  <div class="user-profile">
+    <img src="{{ url_for('static', filename=user['profile_pic'] if user['profile_pic'] else 'default.png') }}" class="profile-pic">
+    <div>
+        <div class="user-name">{{ user['name'] }}</div>
+        <a href="{{ url_for('profile') }}" class="edit-profile">Edit Profile</a>
+    </div>
+</div>
+
+
+<a href="{{ url_for('library') }}"><button>My Library</button></a>
+<a href="{{ url_for('item') }}"><button>Smart Feed</button></a>
+<a href="{{ url_for('schedule') }}"><button>Scheduling</button></a>
+<a href="#"><button class="active">Upload</button></a>
+<a href="{{ url_for('setting') }}"><button>Settings</button></a>
+<a href="{{ url_for('privacy') }}"><button >Privacy</button></a>
+<a href="{{ url_for('terms') }}"><button >Terms of Service</button></a>
+
+
+<a href="/checkout"><button class="upgrade-btn">UPGRADE TO PRO</button></a>
+<button onclick="logout()">Logout</button>
+
+</div>
+
+
+<!-- CONTENT -->
+
+<div class="container">
+
+    <div class="boss-box">
+    
+    <h1>Content Studio</h1>
+    <p class="subtitle">Capture • Preview • Organize • Schedule</p>
+    
+    <!-- TABS -->
+    <div class="tabs">
+        <button type="button" class="tab active" onclick="switchTab('pdf')">📄 PDF</button>
+        <button type="button" class="tab" onclick="switchTab('video')">🎥 Video</button>
+        <button type="button" class="tab" onclick="switchTab('link')">🔗 Link</button>
+        <button type="button" class="tab" onclick="switchTab('notes')">🧠 Notes</button>
+    </div>
+    
+    <form action="/save_all" method="POST" enctype="multipart/form-data">
+    
+    <input type="hidden" name="type" id="type" value="pdf">
+    
+    <!-- TITLE -->
+    <input type="text" name="title" placeholder="Give it a title..." required>
+    
+    <!-- CATEGORY -->
+    <select name="category">
+    <option>Study</option>
+    <option>Programming</option>
+    <option>Design</option>
+    <option>Business</option>
+    </select>
+    
+    <!-- PDF -->
+    <div class="tab-content active" id="pdf">
+        <label class="upload-zone">
+            📄 Drop PDF here
+            <input type="file" name="pdf" accept=".pdf" onchange="previewFile(this,'pdfPreview')">
+        </label>
+        <div id="pdfPreview" class="preview"></div>
+    </div>
+    
+    <!-- VIDEO -->
+    <div class="tab-content" id="video">
+        <label class="upload-zone">
+            🎥 Upload Video
+            <input type="file" name="video" accept="video/*" onchange="previewFile(this,'videoPreview')">
+        </label>
+        <input type="url" name="video_link" placeholder="Paste YouTube link" oninput="previewYoutube(this.value)">
+        <div id="videoPreview" class="preview"></div>
+    </div>
+    
+    <!-- LINK -->
+    <div class="tab-content" id="link">
+        <input type="url" name="link" placeholder="Paste website link" oninput="previewLink(this.value)">
+        <div id="linkPreview" class="preview"></div>
+    </div>
+    
+    <!-- NOTES -->
+    <div class="tab-content" id="notes">
+        <textarea name="notes" placeholder="Write your ideas..."></textarea>
+    </div>
+    
+    <!-- SCHEDULE -->
+    <div class="schedule-box">
+        <label>⏰ Schedule</label>
+        <div class="schedule-grid">
+            <input type="date" name="date">
+            <input type="time" name="time">
+        </div>
+    </div>
+    
+    <button type="submit">🚀 Upload Content</button>
+    
+    </form>
+    
+    </div>
+    
+
+<!--   
+
+<div class="library">
+
+    <h2>Your Library</h2>
+
+    <div class="grid">
+
+        {% for item in contents %}
+
+        <div class="card">
+
+            
+            <span>
+                {% if item["type"] == "pdf" %}📄
+                {% elif item["type"] == "video" %}🎥
+                {% elif item["type"] == "link" %}🔗
+                {% elif item["type"] == "notes" %}🧠
+                {% endif %}
+            </span>
+
+            
+            <h4>{{ item["title"] }}</h4>
+
+            <p>{{ item["category"] }}</p>
+
+            
+            {% if item["type"] == "notes" %}
+                <small>{{ item["notes"] }}</small>
+
+            {% elif item["type"] == "link" %}
+                <a href="{{ item["link"] }}" target="_blank">Open Link</a>
+
+            {% elif item["type"] == "video" and item["link"] %}
+                <a href="{{ item["link"] }}" target="_blank">Watch Video</a>
+
+            {% elif item["type"] == "pdf" and item["file"] %}
+                <a href="/{{ item["file"] }}" target="_blank">View PDF</a>
+            {% endif %}
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+-->
+
+<!-- SAVED CONTENT GRID -->
+<div class="library">
+
+    <h2>Your Library</h2>
+
+    <div class="grid">
+
+        {% for item in contents %}
+
+        <div class="card">
+
+            <span>
+                {% if item["type"] == "pdf" %}📄
+                {% elif item["type"] == "video" %}🎥
+                {% elif item["type"] == "link" %}🔗
+                {% elif item["type"] == "notes" %}🧠
+                {% endif %}
+            </span>
+
+            <h4>{{ item["title"] }}</h4>
+            <p>{{ item["category"] }}</p>
+
+            <!-- ACTION BUTTONS -->
+            <div class="card-tabs">
+
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="openTab(event, 'view{{ item.id }}')">View</button>
+                    <button class="tab-btn" onclick="openTab(event, 'edit{{ item.id }}')">Edit</button>
+                    <button class="tab-btn" onclick="openTab(event, 'delete{{ item.id }}')">Delete</button>
+                </div>
+            
+                <!-- 
+                <div id="view{{ item.id }}" class="tab-content active-tab">
+                    <p>📌 {{ item.category }}</p>
+                    <small>{{ item.notes }}</small>
+                </div> -->
+            <!-- VIEW TAB -->
+<div id="view{{ item.id }}" class="tab-content active-tab">
+
+    <p>📌 Category: {{ item.category }}</p>
+
+    <!-- PDF -->
+    {% if item.type == "pdf" %}
+        <p>📄 PDF File:</p>
+        <a href="/{{ item.file }}" target="_blank">Open PDF</a>
+
+    <!-- VIDEO -->
+    {% elif item.type == "video" %}
+        <p>🎥 Video:</p>
+
+        {% if item.link %}
+            <a href="{{ item.link }}" target="_blank">Watch Video</a>
+        {% else %}
+            <video width="100%" controls>
+                <source src="/{{ item.file }}">
+            </video>
+        {% endif %}
+
+    <!-- LINK -->
+    {% elif item.type == "link" %}
+        <p>🔗 Website:</p>
+        <a href="{{ item.link }}" target="_blank">{{ item.link }}</a>
+
+    <!-- NOTES -->
+    {% elif item.type == "notes" %}
+        <p>🧠 Notes:</p>
+        <div style="white-space:pre-line;">
+            {{ item.notes }}
+        </div>
+    {% endif %}
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+            
+                <!-- EDIT -->
+                <div id="edit{{ item.id }}" class="tab-content">
+                    <a href="/edit/{{ item.id }}">✏ Open Edit Page</a>
+                </div>
+            
+                <!-- DELETE -->
+                <div id="delete{{ item.id }}" class="tab-content">
+                    <a href="/delete/{{ item.id }}" onclick="return confirm('Delete this item?')">
+                        🗑 Delete Permanently
+                    </a>
+                </div>
+            
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<script>
+
+function logout(){
+
+// destroy login session
+localStorage.removeItem("loggedIn");
+
+// optional remove stored user
+// localStorage.removeItem("userEmail");
+
+// beautiful logout screen
+document.body.innerHTML = `
+<div style="
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#121212;
+color:white;
+font-family:Arial;
+flex-direction:column;
+">
+
+<div style="
+padding:40px;
+background:#1c1c1c;
+border-radius:16px;
+border:1px solid #2a2a2a;
+text-align:center;
+box-shadow:0 0 40px rgba(158,255,0,0.15);
+animation:pop .5s;
+">
+
+<h2 style="color:#9eff00;margin-bottom:10px;">Logging Out...</h2>
+<p style="color:#aaa;">Please wait</p>
+
+<div style="
+margin-top:20px;
+width:200px;
+height:6px;
+background:#333;
+border-radius:6px;
+overflow:hidden;
+">
+<div style="
+height:100%;
+width:0%;
+background:#9eff00;
+animation:load 1.2s linear forwards;
+"></div>
+</div>
+
+</div>
+
+<style>
+@keyframes pop{
+from{transform:scale(.8);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+
+@keyframes load{
+to{width:100%}
+}
+</style>
+
+</div>
+`;
+
+// smooth redirect (no http visible feeling)
+setTimeout(()=>{
+window.location.replace("{{ url_for('sign') }}");
+},1200);
+
+}
+
+
+// TAB SWITCH
+function switchTab(tab){
+document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+event.target.classList.add('active');
+
+document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+document.getElementById(tab).classList.add('active');
+
+document.getElementById('type').value = tab;
+}
+
+// FILE PREVIEW
+function previewFile(input, target){
+let file = input.files[0];
+if(file){
+document.getElementById(target).innerHTML = "📂 " + file.name;
+}
+}
+
+// YOUTUBE PREVIEW
+function previewYoutube(url){
+if(url.includes("youtube")){
+let id = url.split("v=")[1];
+if(id){
+document.getElementById("videoPreview").innerHTML =
+`<img src="https://img.youtube.com/vi/${id}/0.jpg" width="100%">`;
+}
+}
+}
+
+// LINK PREVIEW
+function previewLink(url){
+document.getElementById("linkPreview").innerHTML =
+`🔗 ${url}`;
+}
+
+
+
+function openTab(event, tabId) {
+
+    // find parent card
+    let card = event.target.closest(".card-tabs");
+
+    // hide all tab contents inside this card
+    card.querySelectorAll(".tab-content").forEach(tab => {
+        tab.classList.remove("active-tab");
+    });
+
+    // remove active from buttons
+    card.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    // show selected tab
+    document.getElementById(tabId).classList.add("active-tab");
+
+    // activate button
+    event.target.classList.add("active");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </script>
+
+
+
+
+
+
+
+</body>
+</html>

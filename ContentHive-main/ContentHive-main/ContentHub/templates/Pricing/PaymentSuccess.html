@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Successful - ContentHive</title>
+<style>
+    :root {
+        --honey: #9eff00;
+        --bg: #121212;
+        --surface: #1c1c1c;
+        --text: #f0f0f0;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+    }
+
+    body {
+        background: var(--bg);
+        color: var(--text);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .success-card {
+        background: var(--surface);
+        padding: 60px 40px;
+        border-radius: 30px;
+        text-align: center;
+        max-width: 450px;
+        width: 90%;
+        box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        border: 1px solid rgba(158, 255, 0, 0.1);
+        animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes scaleIn {
+        from { opacity: 0; transform: scale(0.8); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    .icon-container {
+        width: 80px;
+        height: 80px;
+        background: var(--honey);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto 30px;
+        box-shadow: 0 0 30px rgba(158, 255, 0, 0.3);
+    }
+
+    .icon-container svg {
+        width: 40px;
+        height: 40px;
+        fill: black;
+    }
+
+    h1 {
+        font-size: 32px;
+        margin-bottom: 15px;
+        color: var(--honey);
+    }
+
+    p {
+        color: #aaa;
+        line-height: 1.6;
+        margin-bottom: 40px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 16px 32px;
+        background: var(--honey);
+        color: black;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(158, 255, 0, 0.2);
+    }
+
+</style>
+</head>
+<body>
+
+    <div class="success-card">
+        <div class="icon-container">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+        </div>
+        <h1>Payment Successful!</h1>
+        <p>Congratulations! Your account has been upgraded to Pro. You now have unlimited access to all premium features.</p>
+        <a href="/library" class="btn">Go to My Library</a>
+    </div>
+
+</body>
+</html>

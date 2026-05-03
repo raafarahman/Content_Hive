@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Edit Note</title>
+<style>
+body{background:#121212;color:white;font-family:Arial;padding:30px;}
+input, textarea{
+width:100%;padding:10px;margin-bottom:10px;
+background:#1c1c1c;border:1px solid #333;color:white;border-radius:8px;
+}
+button{
+padding:10px;background:#9eff00;border:none;border-radius:8px;font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<h1>Edit Note</h1>
+
+<form method="POST">
+  <input type="text" name="title" value="{{ note['title'] }}">
+  <textarea name="content">{{ note['content'] }}</textarea>
+  <input type="text" name="tags" value="{{ note['tags'] }}">
+  <button type="submit">Update</button>
+</form>
+
+</body>
+</html>

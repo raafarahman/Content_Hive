@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Save Video</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial;
+}
+
+body {
+  background: #121212;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* vertically centered */
+}
+
+.container {
+  width: 600px;
+  background: #1c1c1c;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #2a2a2a;
+}
+
+h1 {
+  margin-bottom: 15px;
+  color: #9eff00;
+}
+
+.back-btn{
+  display:inline-block;
+  margin-bottom:15px;
+  padding:6px 12px;
+  background:#2a2a2a;
+  border-radius:6px;
+  color:#9eff00;
+  text-decoration:none;
+  font-size:14px;
+  transition:0.2s;
+}
+
+.back-btn:hover{
+  background:#9eff00;
+  color:black;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  border-radius: 6px;
+  border: none;
+  background: #2a2a2a;
+  color: white;
+}
+
+button {
+  margin-top: 10px;
+  padding: 12px;
+  width: 100%;
+  background:#9eff00 ;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #9eff00;
+}
+
+#search {
+  margin-top: 15px;
+}
+
+.video-item {
+  background: #2a2a2a;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.video-item a {
+  color: #4cafef;
+  text-decoration: none;
+}
+
+.meta {
+  font-size: 12px;
+  color: #bbb;
+}
+
+.actions {
+  margin-top: 8px;
+  display: flex;
+  gap: 10px;
+}
+
+.small-btn {
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.delete { background: #ff4d4d; }
+.fav { background: #ffaa00; }
+
+.tag {
+  display: inline-block;
+  background: #333;
+  padding: 3px 6px;
+  margin-right: 5px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <a href="{{url_for('save') }}" class="back-btn">← Back</a>
+
+  <h1>🎥 Save Video</h1>
+
+  <input type="text" id="videoLink" placeholder="Paste video URL here">
+  <input type="text" id="tags" placeholder="Tags (comma separated)">
+
+  <button onclick="saveVideo()">Save Video</button>
+
+  <input type="text" id="search" placeholder="Search..." onkeyup="loadVideos()">
+
+  <div id="videoList"></div>
+
+</div>
+
+<script>
+function saveVideo() {
+  const link = document.getElementById("videoLink").value;
+  const tags = document.getElementById("tags").value.split(",");
+
+  if (!link) return alert("Enter a video link!");
+
+  const video = {
+    link,
+    fav: false,
+    tags
+  };
+
+  let videos = JSON.parse(localStorage.getItem("videos")) || [];
+  videos.push(video);
+  localStorage.setItem("videos", JSON.stringify(videos));
+
+  document.getElementById("videoLink").value = "";
+  document.getElementById("tags").value = "";
+
+  loadVideos();
+}
+
+function deleteVideo(index) {
+  let videos = JSON.parse(localStorage.getItem("videos"));
+  videos.splice(index, 1);
+  localStorage.setItem("videos", JSON.stringify(videos));
+  loadVideos();
+}
+
+function toggleFav(index) {
+  let videos = JSON.parse(localStorage.getItem("videos"));
+  videos[index].fav = !videos[index].fav;
+  localStorage.setItem("videos", JSON.stringify(videos));
+  loadVideos();
+}
+
+function loadVideos() {
+  const search = document.getElementById("search").value.toLowerCase();
+  const container = document.getElementById("videoList");
+  container.innerHTML = "";
+
+  let videos = JSON.parse(localStorage.getItem("videos")) || [];
+
+  videos
+    .filter(v => v.link.toLowerCase().includes(search))
+    .forEach((v, index) => {
+      const div = document.createElement("div");
+      div.className = "video-item";
+
+      div.innerHTML = `
+        <a href="${v.link}" target="_blank">${v.link}</a>
+        <div class="meta">🎥 Video ${v.fav ? "⭐" : ""}</div>
+        <div>
+          ${v.tags.map(t => `<span class="tag">${t}</span>`).join("")}
+        </div>
+
+        <div class="actions">
+          <button class="small-btn fav" onclick="toggleFav(${index})">Fav</button>
+          <button class="small-btn delete" onclick="deleteVideo(${index})">Delete</button>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+}
+
+loadVideos();
+</script>
+
+</body>
+</html>

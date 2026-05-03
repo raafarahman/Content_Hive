@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ContentHive - Terms of services </title>
+
+<style>
+
+
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial, sans-serif;
+background:#121212;
+color:#f0f0f0;
+}
+
+/* TOPBAR */
+.topbar{
+display:flex;
+align-items:center;
+gap:20px;
+padding:12px 20px;
+background:#0d0d0d;
+border-bottom:1px solid #9eff00;
+}
+
+.nav-btn{
+text-decoration:none;
+color:white;
+padding:6px 12px;
+border-radius:6px;
+transition:0.2s;
+}
+
+.nav-btn:hover{
+background:#9eff00;
+color:black;
+text-decoration:none;
+}
+
+.search{
+background:#1a1a1a;
+border:1px solid #444;
+border-radius:20px;
+padding:6px 12px;
+color:white;
+}
+
+.logo{
+margin-left:auto;
+font-weight:bold;
+color:#9eff00;
+font-size:18px;
+}
+
+/* MAIN LAYOUT */
+.main{
+display:flex;
+}
+
+/* SIDEBAR */
+.sidebar{
+width:260px;
+background:#191919;
+border-right:1px solid #223149;
+display:flex;
+flex-direction:column;
+padding:20px;
+gap:10px;
+min-height:100vh;
+}
+
+.sidebar button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#191919;
+color:white;
+text-align:left;
+cursor:pointer;
+transition:0.2s;
+}
+
+.sidebar button:hover{
+background:#9eff00;
+color:black;
+}
+
+.sidebar .active button{
+    background:#9eff00;
+    color:black;
+    font-weight:bold;
+    }
+
+.upgrade-btn{
+margin-top:auto;
+background:#9eff00;
+color:black;
+font-weight:bold;
+}
+
+
+
+
+
+/* CONTENT AREA */
+.container{
+flex:1;
+padding:40px;
+}
+
+.policy-box{
+max-width:900px;
+margin:auto;
+background:#1c1c1c;
+padding:30px;
+border-radius:12px;
+border:1px solid #2a2a2a;
+}
+
+h1{
+color:#9eff00;
+margin-bottom:20px;
+text-align:center;
+}
+
+h2{
+color:#98fb29;
+margin-top:25px;
+margin-bottom:10px;
+}
+
+p{
+line-height:1.6;
+margin-bottom:12px;
+}
+
+ul{
+margin-left:20px;
+margin-bottom:15px;
+}
+
+a{
+color:#9eff00;
+text-decoration:none;
+}
+
+a:hover{
+text-decoration:underline;
+}
+
+
+.user-profile{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:20px;
+    padding-bottom:15px;
+    border-bottom:1px solid #333;
+}
+
+.profile-pic{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid #9eff00;
+}
+
+.user-name{
+    font-weight:bold;
+    font-size:16px;
+}
+
+.edit-profile{
+    font-size:12px;
+    color:#9eff00;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="topbar">
+
+    <a href="#" class="nav-btn">Home</a>
+    <a href="{{ url_for('pricing') }}" class="nav-btn">Pricing</a>
+    <a href="{{ url_for('download') }}" class="nav-btn">Download</a>
+    <a href="#" class="nav-btn">About</a>
+    
+    <input type="text" class="search" placeholder="Search">
+    
+    <span class="logo">Content Hive</span>
+    
+    </div>
+    
+    
+    <div class="main">
+    
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+    
+        <div class="user-profile">
+            <img src="{{ url_for('static', filename=user['profile_pic'] if user['profile_pic'] else 'default.png') }}" class="profile-pic">
+            <div>
+                <div class="user-name">{{ user['name'] }}</div>
+                <a href="{{ url_for('profile') }}" class="edit-profile">Edit Profile</a>
+            </div>
+        </div>
+    
+    
+    <a href="{{ url_for('library') }}"><button>My Library</button></a>
+    <a href="{{ url_for('item') }}"><button>Smart Feed</button></a>
+    <a href="{{ url_for('schedule') }}"><button>Scheduling</button></a>
+    <a href="{{ url_for('save') }}"><button>Upload</button></a>
+    <a href="{{ url_for('setting') }}"><button>Settings</button></a>
+    <a href="{{ url_for('privacy') }}"><button >Privacy</button></a>
+    <a href="#"><button class="active">Terms of Service</button></a>
+    <a href="/checkout"><button class="upgrade-btn">UPGRADE TO PRO</button></a>
+    <a href="{{ url_for('logout') }}"><button >Logout</button></a>
+    </div>
+    
+
+
+<!-- CONTENT -->
+<div class="container">
+    <h1>Terms of Service</h1>
+    <div class="date">Last updated: September 20, 2025</div>
+  
+    <h2>Introduction</h2>
+    <p>
+      These Terms of Service ("Terms") govern your access to and use of the ContentPulse platform,
+      including our website, browser extension, and any associated services (collectively, the "Service").
+      By accessing or using the Service, you agree to be bound by these Terms. If you do not agree,
+      you may not use the Service.
+    </p>
+  
+    <h2>Acceptance of Terms</h2>
+    <p>
+      By creating an account, downloading our extension, or otherwise accessing the Service, you
+      acknowledge that you have read, understood, and agree to be bound by these Terms and our
+      Privacy Policy. You represent that you have the authority to enter into these Terms.
+    </p>
+  
+    <h2>Use of Service</h2>
+    <p>
+      You agree to use the Service only for lawful purposes. You will not use the Service in any way
+      that could damage or interfere with others’ use. Unauthorized access attempts are strictly prohibited.
+    </p>
+  
+    <h2>User Obligations</h2>
+    <p>In using the Service, you agree to:</p>
+    <ul>
+      <li>Provide accurate and complete registration information.</li>
+      <li>Maintain the confidentiality of your account credentials.</li>
+      <li>Notify us immediately of unauthorized account use.</li>
+      <li>Comply with all applicable laws and regulations.</li>
+    </ul>
+  
+    <h2>Intellectual Property</h2>
+    <p>
+      The Service and all content are the property of ContentPulse. You may not reproduce,
+      distribute, or exploit any part without permission.
+    </p>
+  
+    <h2>Limitation of Liability</h2>
+    <p>
+      ContentPulse shall not be liable for any indirect or consequential damages. Our total liability
+      will not exceed the amount you paid for the Service.
+    </p>
+  
+    <h2>Governing Law</h2>
+    <p>
+      These Terms are governed by applicable laws of the jurisdiction where ContentPulse operates.
+      Any disputes will be handled in local courts.
+    </p>
+  </div>
+  
+  <script>
+
+function logout(){
+
+// destroy login session
+localStorage.removeItem("loggedIn");
+
+// optional remove stored user
+// localStorage.removeItem("userEmail");
+
+// beautiful logout screen
+document.body.innerHTML = `
+<div style="
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#121212;
+color:white;
+font-family:Arial;
+flex-direction:column;
+">
+
+<div style="
+padding:40px;
+background:#1c1c1c;
+border-radius:16px;
+border:1px solid #2a2a2a;
+text-align:center;
+box-shadow:0 0 40px rgba(158,255,0,0.15);
+animation:pop .5s;
+">
+
+<h2 style="color:#9eff00;margin-bottom:10px;">Logging Out...</h2>
+<p style="color:#aaa;">Please wait</p>
+
+<div style="
+margin-top:20px;
+width:200px;
+height:6px;
+background:#333;
+border-radius:6px;
+overflow:hidden;
+">
+<div style="
+height:100%;
+width:0%;
+background:#9eff00;
+animation:load 1.2s linear forwards;
+"></div>
+</div>
+
+</div>
+
+<style>
+@keyframes pop{
+from{transform:scale(.8);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+
+@keyframes load{
+to{width:100%}
+}
+</style>
+
+</div>
+`;
+
+// smooth redirect (no http visible feeling)
+setTimeout(()=>{
+window.location.replace("{{ url_for('sign') }}");
+},1200);
+
+}
+    
+    </script>
+
+
+
+
+
+
+
+</body>
+</html>

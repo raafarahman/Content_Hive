@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout - ContentHive</title>
+<style>
+    :root {
+        --honey: #9eff00;
+        --honey-hover: #b1ff33;
+        --bg: #121212;
+        --surface: #1c1c1c;
+        --text: #f0f0f0;
+        --muted: #aaa;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+        background: var(--bg);
+        color: var(--text);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        overflow: hidden;
+    }
+
+    .checkout-container {
+        width: 100%;
+        max-width: 450px;
+        background: var(--surface);
+        padding: 40px;
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 100px rgba(158, 255, 0, 0.05);
+        position: relative;
+        animation: slideUp 0.6s ease;
+    }
+
+    @keyframes slideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+        font-size: 28px;
+        margin-bottom: 8px;
+        color: var(--honey);
+    }
+
+    p.subtitle {
+        color: var(--muted);
+        font-size: 14px;
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--muted);
+        margin-bottom: 8px;
+    }
+
+    input {
+        width: 100%;
+        padding: 14px;
+        background: #0d0d0d;
+        border: 1px solid #333;
+        border-radius: 12px;
+        color: white;
+        font-size: 16px;
+        outline: none;
+        transition: 0.3s;
+    }
+
+    input:focus {
+        border-color: var(--honey);
+        box-shadow: 0 0 10px rgba(158, 255, 0, 0.2);
+    }
+
+    .row {
+        display: flex;
+        gap: 15px;
+    }
+
+    .row > div {
+        flex: 1;
+    }
+
+    .pay-button {
+        width: 100%;
+        padding: 16px;
+        background: var(--honey);
+        color: black;
+        border: none;
+        border-radius: 12px;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: 0.3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .pay-button:hover {
+        background: var(--honey-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(158, 255, 0, 0.3);
+    }
+
+    .pay-button:active {
+        transform: translateY(0);
+    }
+
+    .card-icons {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+        justify-content: center;
+        opacity: 0.5;
+    }
+
+    .card-icons img {
+        height: 20px;
+    }
+
+    /* Premium card mockup effect */
+    .card-preview {
+        height: 200px;
+        background: linear-gradient(135deg, #1e1e1e, #0d0d0d);
+        border-radius: 16px;
+        margin-bottom: 30px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card-preview::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle at center, rgba(158, 255, 0, 0.05), transparent 70%);
+        pointer-events: none;
+    }
+
+    .chip {
+        width: 40px;
+        height: 30px;
+        background: #444;
+        border-radius: 4px;
+    }
+
+    .card-number-display {
+        font-size: 20px;
+        letter-spacing: 2px;
+        color: #fff;
+        font-family: 'Courier New', Courier, monospace;
+    }
+
+    .card-details-display {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--muted);
+    }
+
+    .back-link {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 14px;
+        transition: 0.2s;
+    }
+
+    .back-link:hover {
+        color: var(--honey);
+    }
+
+</style>
+</head>
+<body>
+
+    <div class="checkout-container">
+        <h1>Upgrade to Pro</h1>
+        <p class="subtitle">Secure checkout powered by ContentHive</p>
+
+        <div class="card-preview">
+            <div class="chip"></div>
+            <div class="card-number-display" id="disp-number">•••• •••• •••• ••••</div>
+            <div class="card-details-display">
+                <div>
+                    <div style="font-size: 10px;">CARD HOLDER</div>
+                    <div id="disp-name" style="color: #fff;">YOUR NAME</div>
+                </div>
+                <div>
+                    <div style="font-size: 10px;">EXPIRES</div>
+                    <div id="disp-expiry" style="color: #fff;">MM/YY</div>
+                </div>
+            </div>
+        </div>
+
+        <form action="/process_payment" method="POST">
+            <div class="form-group">
+                <label>Cardholder Name</label>
+                <input type="text" name="name" id="name" placeholder="John Doe" required oninput="updateCard()">
+            </div>
+
+            <div class="form-group">
+                <label>Card Number</label>
+                <input type="text" name="card_number" id="card_number" placeholder="0000 0000 0000 0000" maxlength="19" required oninput="updateCard()">
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label>Expiry Date</label>
+                    <input type="text" name="expiry" id="expiry" placeholder="MM/YY" maxlength="5" required oninput="updateCard()">
+                </div>
+                <div class="form-group">
+                    <label>CVV</label>
+                    <input type="password" name="cvv" id="cvv" placeholder="•••" maxlength="3" required>
+                </div>
+            </div>
+
+            <button type="submit" class="pay-button">
+                Pay $9.00 Monthly
+            </button>
+        </form>
+
+        <a href="/Pricing/pricing.html" class="back-link">← Back to Pricing</a>
+
+        <div class="card-icons">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" alt="Visa">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png" alt="Mastercard">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1200px-PayPal.svg.png" alt="Paypal">
+        </div>
+    </div>
+
+    <script>
+        function updateCard() {
+            const name = document.getElementById('name').value;
+            const number = document.getElementById('card_number').value;
+            const expiry = document.getElementById('expiry').value;
+
+            document.getElementById('disp-name').innerText = name || 'YOUR NAME';
+            document.getElementById('disp-number').innerText = number || '•••• •••• •••• ••••';
+            document.getElementById('disp-expiry').innerText = expiry || 'MM/YY';
+
+            // Auto-format card number
+            let target = document.getElementById('card_number');
+            target.value = target.value.replace(/\s/g, '').replace(/(\d{4})/g, '$1 ').trim();
+            
+            // Auto-format expiry
+            let exp = document.getElementById('expiry');
+            if (exp.value.length === 2 && !exp.value.includes('/')) {
+                exp.value = exp.value + '/';
+            }
+        }
+    </script>
+</body>
+</html>

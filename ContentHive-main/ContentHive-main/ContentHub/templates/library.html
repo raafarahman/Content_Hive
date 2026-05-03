@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ContentHive - My Library</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial, sans-serif;
+background:#121212;
+color:#f0f0f0;
+}
+
+/* TOP BAR */
+.top-bar{
+display:flex;
+align-items:center;
+gap:20px;
+padding:12px 20px;
+background:#0d0d0d;
+border-bottom:1px solid #9eff00;
+}
+
+.nav-btn{
+text-decoration:none;
+color:white;
+padding:6px 12px;
+border-radius:6px;
+transition:0.2s;
+}
+
+.nav-btn:hover{
+background:#9eff00;
+color:black;
+}
+
+.search{
+background:#1a1a1a;
+border:1px solid #444;
+border-radius:20px;
+padding:6px 12px;
+color:white;
+}
+
+.logo{
+margin-left:auto;
+font-weight:bold;
+color:#9eff00;
+font-size:18px;
+}
+
+/* MAIN LAYOUT */
+.main{
+display:flex;
+}
+
+/* SIDEBAR */
+.sidebar{
+width:260px;
+background:#191919;
+border-right:1px solid #223149;
+display:flex;
+flex-direction:column;
+padding:20px;
+gap:10px;
+min-height:100vh;
+}
+
+.sidebar a{
+text-decoration:none;
+}
+
+.sidebar button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#191919;
+color:white;
+text-align:left;
+cursor:pointer;
+transition:0.2s;
+}
+
+.sidebar button:hover{
+background:#9eff00;
+color:black;
+}
+
+.sidebar .active button{
+background:#9eff00;
+color:black;
+font-weight:bold;
+}
+
+.upgrade-btn{
+margin-top:auto;
+background:#9eff00;
+color:black;
+font-weight:bold;
+}
+
+/* USER PROFILE */
+.user-profile{
+display:flex;
+align-items:center;
+gap:12px;
+margin-bottom:20px;
+padding-bottom:15px;
+border-bottom:1px solid #333;
+}
+
+.profile-pic{
+width:45px;
+height:45px;
+border-radius:50%;
+object-fit:cover;
+border:2px solid #9eff00;
+}
+
+.user-name{
+font-weight:bold;
+font-size:16px;
+}
+
+.edit-profile{
+font-size:12px;
+color:#9eff00;
+text-decoration:none;
+}
+
+/* CONTENT AREA */
+.container{
+flex:1;
+padding:30px;
+}
+
+.card{
+background:#262626;
+border:1px solid #333;
+border-radius:12px;
+padding:20px;
+width:100%;
+}
+
+.card-title{
+font-size:18px;
+font-weight:bold;
+margin-bottom:15px;
+}
+
+/* TABS */
+.format-buttons{
+display:flex;
+gap:10px;
+margin-bottom:20px;
+flex-wrap:wrap;
+}
+
+.format-btn{
+background:#333;
+border:none;
+color:white;
+padding:8px 14px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.format-btn.active{
+background:#9eff00;
+color:black;
+font-weight:bold;
+}
+
+.divider{
+height:1px;
+background:#333;
+margin:15px 0;
+}
+
+.social-tab{
+width:100%;
+}
+
+iframe{
+border:none;
+border-radius:8px;
+}
+
+/* WARNING TEXT */
+.warning{
+margin-top:10px;
+color:#aaa;
+font-size:13px;
+}
+
+
+.news-card{
+    display:block;
+    background:#262626;
+    padding:18px;
+    border-radius:10px;
+    color:#9eff00;
+    text-decoration:none;
+    margin-top:10px;
+    transition:0.2s;
+    border:1px solid #333;
+    }
+    
+    .news-card:hover{
+    background:#333;
+    transform:scale(1.01);
+    }
+
+
+
+
+
+
+
+
+
+
+
+</style>
+</head>
+
+
+
+
+
+
+
+
+
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+<a href="#" class="nav-btn">Home</a>
+<a href="{{ url_for('pricing') }}" class="nav-btn">Pricing</a>
+<a href="{{ url_for('download') }}" class="nav-btn">Download</a>
+<a href="#" class="nav-btn">About</a>
+
+<input type="text" class="search" placeholder="Search">
+
+<div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
+  <span style="font-size: 18px;">🐝</span>
+  <span style="font-weight: bold; color: #9eff00; font-size: 18px; letter-spacing: -0.5px;">ContentHive</span>
+</div>
+</div>
+
+<div class="main">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+<div class="user-profile">
+<img src="{{ url_for('static', filename=user['profile_pic'] if user['profile_pic'] else 'default.png') }}" class="profile-pic">
+<div>
+<div class="user-name">{{ user['name'] }}</div>
+<a href="{{ url_for('profile') }}" class="edit-profile">Edit Profile</a>
+</div>
+</div>
+
+<a href="#" class="active"><button>My Library</button></a>
+<a href="{{ url_for('item') }}"><button>Smart Feed</button></a>
+<a href="{{ url_for('schedule') }}"><button>Scheduling</button></a>
+<a href="{{ url_for('save') }}"><button>Upload</button></a>
+<a href="{{ url_for('setting') }}"><button>Settings</button></a>
+<a href="{{ url_for('privacy') }}"><button>Privacy</button></a>
+<a href="{{ url_for('terms') }}"><button>Terms</button></a>
+
+<a href="/checkout"><button class="upgrade-btn">UPGRADE TO PRO</button></a>
+<a href="{{ url_for('logout') }}"><button>Logout</button></a>
+
+</div>
+
+<!-- CONTENT -->
+
+
+<div class="container">
+
+    <div class="card">
+    
+    <div class="card-title">Social Media Dashboard</div>
+
+    <div class="format-buttons">
+        <button class="format-btn active" onclick="openSocialTab('youtube', event)">YouTube</button>
+        <button class="format-btn" onclick="openSocialTab('reddit', event)">Reddit</button>
+        <button class="format-btn" onclick="openSocialTab('hacker', event)">Hacker News</button>
+        <button class="format-btn" onclick="openSocialTab('news', event)">Google News</button>
+        <button class="format-btn" onclick="openSocialTab('gfg', event)">GeeksforGeeks</button>
+        <button class="format-btn" onclick="openSocialTab('programiz', event)">Programiz</button>
+        <button class="format-btn" onclick="openSocialTab('w3schools', event)">W3Schools</button>
+        <button class="format-btn" onclick="openSocialTab('apnacollege', event)">Apna College</button>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <!-- YOUTUBE -->
+        <div id="youtube" class="social-tab">
+        <iframe width="100%" height="400"
+        src="https://www.youtube.com/embed/videoseries?list=PLBCF2DAC6FFB574DE"
+        allowfullscreen></iframe>
+        </div>
+        
+        <!-- REDDIT -->
+        <div id="reddit" class="social-tab" style="display:none;">
+        <a class="news-card" href="https://www.reddit.com/r/popular/" target="_blank">
+        🔥 Open Reddit Popular Feed
+        </a>
+        </div>
+        
+        <!-- HACKER NEWS -->
+        <div id="hacker" class="social-tab" style="display:none;">
+        <a class="news-card" href="https://news.ycombinator.com/" target="_blank">
+        ⚡ Open Hacker News (Tech Stories)
+        </a>
+        </div>
+        
+        <!-- GOOGLE NEWS -->
+        <div id="news" class="social-tab" style="display:none;">
+        <a class="news-card" href="https://news.google.com/" target="_blank">
+        📰 Open Google News (Latest Updates)
+        </a>
+        </div>
+        
+        <!-- GEEKSFORGEEKS -->
+        <div id="gfg" class="social-tab" style="display:none;">
+        <a class="news-card" href="https://www.geeksforgeeks.org/" target="_blank">
+        💻 Open GeeksforGeeks (Programming Articles)
+        </a>
+        </div>
+        
+        <!-- PROGRAMIZ -->
+        <div id="programiz" class="social-tab" style="display:none;">
+        <a class="news-card" href="https://www.programiz.com/" target="_blank">
+        📝 Open Programiz (Learn to Code)
+        </a>
+        </div>
+        
+        <!-- W3SCHOOLS -->
+        <div id="w3schools" class="social-tab" style="display:none;">
+        <a class="news-card" href="https://www.w3schools.com/" target="_blank">
+        🌐 Open W3Schools (Web Tutorials)
+        </a>
+        </div>
+        
+        <!-- APNA COLLEGE -->
+        <div id="apnacollege" class="social-tab" style="display:none;">
+        <a class="news-card" href="https://www.youtube.com/@ApnaCollegeOfficial" target="_blank">
+        🎓 Open Apna College (YouTube Channel)
+        </a>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+</div>
+</div>
+
+
+
+<script>
+    function openSocialTab(tab, event){
+    
+    document.querySelectorAll(".social-tab").forEach(t => {
+    t.style.display = "none";
+    });
+    
+    document.getElementById(tab).style.display = "block";
+    
+    document.querySelectorAll(".format-btn").forEach(b => {
+    b.classList.remove("active");
+    });
+    
+    event.target.classList.add("active");
+    }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

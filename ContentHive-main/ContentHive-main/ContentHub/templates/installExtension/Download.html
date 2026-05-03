@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ContentPulse</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='install.css') }}">
+</head>
+
+<body>
+
+<header class="header">
+<div class="container nav-container">
+
+<div class="logo">ContentHive</div>
+
+<nav class="nav">
+<a href="{{ url_for('index') }}">Home</a>
+<a href="{{ url_for('pricing') }}">Pricing</a>
+<a href="#">Download</a>
+
+</nav>
+
+<div class="auth">
+<a class="signin" href="{{ url_for('sign') }}">Sign In</a>
+<a class="signup" href="{{ url_for('create') }}">Sign Up Free</a>
+</div>
+
+</div>
+</header>
+
+
+<section class="hero container">
+
+<div class="hero-text">
+
+<h1>
+Save smarter,<br>
+<span>everywhere you browse.</span>
+</h1>
+
+<p>
+The ContentHive extension lets you capture, enrich, and schedule
+content with a single click.
+</p>
+
+<button class="install-btn">Install on Chrome</button>
+
+</div>
+
+<div class="hero-card">
+
+<h3>ContentHive</h3>
+
+<div class="card-box">
+
+<h4>The Future of AI is Agents...</h4>
+<p>example-ai-journal.com</p>
+
+<button>Save to Feed</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="features">
+
+<div class="container feature-grid">
+
+<div class="feature">
+<h3>⚡ Save instantly</h3>
+<p>Capture content with one click.</p>
+</div>
+
+<div class="feature">
+<h3>🤖 AI summaries</h3>
+<p>Get highlights automatically.</p>
+</div>
+
+<div class="feature">
+<h3>📅 Schedule later</h3>
+<p>Revisit content anytime.</p>
+</div>
+
+<div class="feature">
+<h3>🔒 Private & secure</h3>
+<p>Export your data anytime.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="install container">
+
+<h2>Installation Guide</h2>
+<p>Get up and running in less than a minute.</p>
+
+<div class="install-box">
+
+<p>
+Our extension is currently under review. Once it's live you can install it from the Chrome Store.
+</p>
+
+<button class="chrome-btn">
+Coming Soon to Chrome Store
+</button>
+
+</div>
+
+</section>
+
+
+<section class="troubleshoot">
+
+<div class="container">
+
+<h2>Troubleshooting</h2>
+
+<div class="faq">
+
+<div class="faq-item">
+<h4>Extension icon not showing?</h4>
+<p>Click the puzzle icon in Chrome and pin ContentPulse.</p>
+</div>
+
+<div class="faq-item">
+<h4>Manifest V3 error?</h4>
+<p>Update Chrome to the latest version.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="updates container">
+
+<h2>What's New</h2>
+
+<div class="update-card">
+
+<div class="update-header">
+<h4>Version 1.0.0 (Beta)</h4>
+<span>Sep 19, 2025</span>
+</div>
+
+<ul>
+<li>Initial public beta release</li>
+<li>Capture, Enrich, Scheduling</li>
+<li>Chrome Manifest V3 support</li>
+</ul>
+
+</div>
+
+</section>
+
+</body>
+</html>
